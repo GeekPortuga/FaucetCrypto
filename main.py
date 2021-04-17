@@ -8,7 +8,7 @@ import threading
 import time
 import winsound
 
-from selenium import webdriver  # python -m pip install seleniu
+from selenium import webdriver  # python -m pip install selenium
 from selenium.webdriver.chrome.options import Options
 from win10toast import ToastNotifier  # python -m pip install win10toast
 
@@ -45,7 +45,7 @@ def ClaimFaucet():
             'name': 'remember_web_3dc7a913ef5fd4b890ecabe3487085573e16cf82',
             # <-- Replace by your remember cookie value
             # Replace by your remember token -->
-            'value': 'eyJpdiI6IlRpVmVjRmVaN3Ava3ozb25TcHVScXc9PSIsInZhbHVlIjoiNk1PSmQ1UTVsckRsVnBDL3VVNU95V1l0dnRNRDRDNXNYME1ubDNxa2gvWGdveTIwZk5WcGVzQ0RQc1RGQnNqNDJoRk5FNjRkd0ZVcG9CZFZ4eWRMMElMVzBZNmswL0tOcUVsblZVUHZSWmtJbFpwVGVKK0t3Z0hYSEZBSm1EcCswREZmOVBYdmN5bkNJcm95SDJ2ZDZsSGNjL1o4R3JsenNOV04xM2ZFWnp2ODVFM0RDM29tZ3VwVXphK1h2UXVRdkphVEtQQy9ndHFoZXV5S0JuZFlXdFpoanN5Y1FYTDBBZytNRnhBQXlRVT0iLCJtYWMiOiI3YjExOTNiNjE5ZjY1OWZhMDIwNjZmMGQ0Y2NiOGQyZGExOWJiOTM3MzY2NTY0ZDcyY2FjY2RlYWRmNTc5ZWM5In0%3D',
+            'value': 'YourRememberToken',
             # <-- Replace by your remember token
             'domain': 'faucetcrypto.com',
             'path': '/',
@@ -127,7 +127,7 @@ def DoPtcAds():
             'name': 'remember_web_3dc7a913ef5fd4b890ecabe3487085573e16cf82',
             # <-- Replace by your remember cookie value
             # Replace by your remember token -->
-            'value': 'eyJpdiI6IlRpVmVjRmVaN3Ava3ozb25TcHVScXc9PSIsInZhbHVlIjoiNk1PSmQ1UTVsckRsVnBDL3VVNU95V1l0dnRNRDRDNXNYME1ubDNxa2gvWGdveTIwZk5WcGVzQ0RQc1RGQnNqNDJoRk5FNjRkd0ZVcG9CZFZ4eWRMMElMVzBZNmswL0tOcUVsblZVUHZSWmtJbFpwVGVKK0t3Z0hYSEZBSm1EcCswREZmOVBYdmN5bkNJcm95SDJ2ZDZsSGNjL1o4R3JsenNOV04xM2ZFWnp2ODVFM0RDM29tZ3VwVXphK1h2UXVRdkphVEtQQy9ndHFoZXV5S0JuZFlXdFpoanN5Y1FYTDBBZytNRnhBQXlRVT0iLCJtYWMiOiI3YjExOTNiNjE5ZjY1OWZhMDIwNjZmMGQ0Y2NiOGQyZGExOWJiOTM3MzY2NTY0ZDcyY2FjY2RlYWRmNTc5ZWM5In0%3D',
+            'value': 'YourRememberToken',
             # <-- Replace by your remember token
             'domain': 'faucetcrypto.com',
             'path': '/',
@@ -229,7 +229,7 @@ def DoOfferwalls_AsiaMag():
     path = 'http://asia-mag.com'
     domain = 'asia-mag.com'
     # Replace by your ASIA Mag visit code -->
-    asiamag_visit_code = 'NQEQ64131098273'
+    asiamag_visit_code = 'YourVisitCode'
     # <-- Replace by your ASIA Mag visit code
 
     while True:
@@ -316,12 +316,11 @@ def DoOfferwalls_AsiaMag():
                         except:
                             pass
                     elif '/4 : Complete captcha on bottom page !</h5>' in browser.page_source:
-                        Notification(app, 'Please solve captcha!')
                         for i in range(3):
                             winsound.Beep(999, 500)
                             time.sleep(0.5)
                         Notification(app, 'Please solve captcha!')
-                        time.sleep(120)
+                        time.sleep(90)
                         break
                     if time.time() - time_start > 360:
                         break
