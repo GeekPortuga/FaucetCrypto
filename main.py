@@ -105,6 +105,8 @@ def ClaimFaucet():
                         if time.time() - time_start > 360:
                             raise Exception('Timeout')
                     time.sleep(1)
+                else:
+                    Notification(app, 'Not ready to claim!')
             except Exception as ex:
                 print('%s has exception:\n%s!' % (app, ex))
                 Notification(app, '%s has exception:\n%s!' % (app, ex))
