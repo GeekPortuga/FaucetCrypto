@@ -20,6 +20,12 @@
 
 [![SC2 Video](http://i3.ytimg.com/vi/0B6Jy9-OZ2M/maxresdefault.jpg)](https://www.youtube.com/watch?v=0B6Jy9-OZ2M)
 
+[19/04/2021]
+
+`main.py` Add Do ShortLink
+
+[![SC2 Video](http://i3.ytimg.com/vi/L7G-1abgmwA/maxresdefault.jpg)](https://www.youtube.com/watch?v=L7G-1abgmwA)
+
 https://www.youtube.com/watch?v=0B6Jy9-OZ2M
 
 ###### Please do step by step to use:
@@ -59,6 +65,12 @@ https://www.youtube.com/watch?v=0B6Jy9-OZ2M
 `main.py` Nhận thưởng, làm nhiệm vụ Ptc Ads, Offerwalls
 
 [![SC2 Video](http://i3.ytimg.com/vi/0B6Jy9-OZ2M/maxresdefault.jpg)](https://www.youtube.com/watch?v=0B6Jy9-OZ2M)
+
+[19/04/2021]
+
+`main.py` Thêm tính năng làm nhiệm vụ Shortlink
+
+[![SC2 Video](http://i3.ytimg.com/vi/L7G-1abgmwA/maxresdefault.jpg)](https://www.youtube.com/watch?v=L7G-1abgmwA)
 
 ###### Vui lòng thực hiện theo các bước sau:
 

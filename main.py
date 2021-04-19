@@ -88,7 +88,7 @@ def ClaimFaucet():
                                 winsound.Beep(999, 500)
                                 time.sleep(0.5)
                             Notification(app, 'Please solve captcha!')
-                            time.sleep(60)
+                            time.sleep(30)
                             if 'Get Reward' in browser.page_source:
                                 break
                         elif 'Page Expired' in browser.page_source:
@@ -123,6 +123,7 @@ def DoPtcAds():
     # App config
     app = 'Do Ptc Ads'
     path = 'https://faucetcrypto.com'
+    domain = "faucetcrypto.com"
     faucetcrypto_cookies = [
         {
             # Replace by your remember cookie name -->
@@ -174,7 +175,7 @@ def DoPtcAds():
                             target_tag = None
                             for handle in browser.window_handles:
                                 browser.switch_to.window(handle)
-                                if path not in browser.current_url:
+                                if domain not in browser.current_url:
                                     browser.close()
                                 else:
                                     target_tag = handle
@@ -189,7 +190,7 @@ def DoPtcAds():
                             winsound.Beep(999, 500)
                             time.sleep(0.5)
                         Notification(app, 'Please solve captcha!')
-                        time.sleep(60)
+                        time.sleep(30)
                         if 'Get Reward' in browser.page_source:
                             break
                     elif 'Page Expired' in browser.page_source:
@@ -208,6 +209,146 @@ def DoPtcAds():
                             browser.find_element_by_xpath("//a[contains(text(), 'Continue')]").click()
                             Notification(app, 'Completed task!')
                             break
+                        except:
+                            pass
+                    if time.time() - time_start > 360:
+                        raise Exception('Timeout')
+                    time.sleep(1)
+            except Exception as ex:
+                print('%s has exception:\n%s!' % (app, ex))
+                Notification(app, '%s has exception:\n%s!' % (app, ex))
+            finally:
+                browser.quit()
+            sync = True
+            time.sleep(delay_time)
+        else:
+            time.sleep(1)
+
+
+# Do Short link
+def DoShortlink():
+    # App config
+    app = 'Do Shortlink'
+    path = 'https://faucetcrypto.com'
+    domain = 'faucetcrypto.com'
+    domain1 = '/faucetcrypto.com/claim/step/'
+    faucetcrypto_cookies = [
+        {
+            # Replace by your remember cookie name -->
+            'name': 'remember_web_3dc7a913ef5fd4b890ecabe3487085573e16cf82',
+            # <-- Replace by your remember cookie value
+            # Replace by your remember token -->
+            'value': 'YourRememberToken',
+            # <-- Replace by your remember token
+            'domain': 'faucetcrypto.com',
+            'path': '/',
+        },
+    ]
+
+    while True:
+        global sync
+        if sync:
+            sync = False
+            delay_time = 60
+            browser = webdriver.Chrome(options=opts, executable_path=chromedriver_path)
+            browser.set_page_load_timeout(60)
+            try:
+                browser.get(path)
+                for cookie in faucetcrypto_cookies:
+                    browser.add_cookie(cookie)
+                browser.get(path + '/shortlink/list')
+                time.sleep(1)
+                try:
+                    browser.find_element_by_xpath("//button[contains(text(), 'Skip')]").click()
+                    time.sleep(1)
+                except:
+                    pass
+                try:
+                    browser.find_element_by_xpath(
+                        "//button[contains(@class, 'chatbro_header_button chatbro_minimize_button')]").click()
+                    time.sleep(1)
+                except:
+                    pass
+                while True:
+                    try:
+                        windows_count = len(browser.window_handles)
+                        if windows_count > 1:
+                            target_tag = None
+                            for handle in browser.window_handles:
+                                browser.switch_to.window(handle)
+                                if domain not in browser.current_url:
+                                    if windows_count > 1:
+                                        browser.close()
+                                    else:
+                                        browser.get(path + '/shortlink/list')
+                                        target_tag = handle
+                                else:
+                                    target_tag = handle
+                            browser.switch_to.window(target_tag)
+                        browser.execute_script('window.scrollTo(0,document.body.scrollHeight);')
+                        if 'https://faucetcrypto.com/task/shortlink/short-fc' in browser.page_source:
+                            browser.get('https://faucetcrypto.com/task/shortlink/short-fc')
+                        elif 'https://faucetcrypto.com/task/shortlink/short-fg' in browser.page_source:
+                            browser.get('https://faucetcrypto.com/task/shortlink/short-fg')
+                        time.sleep(1)
+                        break
+                    except Exception as ex:
+                        print(ex)
+                        delay_time = 3600
+                        raise Exception("No Shortlink to click!")
+                time_start = time.time()
+                is_shortlink_page = False
+                step_count = 0
+                while True:
+                    try:
+                        if len(browser.window_handles) > 1:
+                            target_tag = None
+                            for handle in browser.window_handles:
+                                browser.switch_to.window(handle)
+                                if (domain not in browser.current_url and not is_shortlink_page) or (
+                                        domain1 not in browser.current_url and is_shortlink_page):
+                                    browser.close()
+                                else:
+                                    target_tag = handle
+                            browser.switch_to.window(target_tag)
+                    except:
+                        pass
+                    if 'You have failed to complete the captcha many times' in browser.page_source:
+                        delay_time = 1800
+                        raise Exception('Failed to complete the captcha many times')
+                    elif 'Please click on the similar buttons in the following order' in browser.page_source:
+                        for i in range(3):
+                            winsound.Beep(999, 500)
+                            time.sleep(0.5)
+                        Notification(app, 'Please solve captcha!')
+                        time.sleep(30)
+                        if 'Get Reward' in browser.page_source:
+                            break
+                    elif 'Page Expired' in browser.page_source:
+                        browser.refresh()
+                    elif 'Get Reward' in browser.page_source:
+                        browser.execute_script('window.scrollTo(0,document.body.scrollHeight);')
+                        buttons = browser.find_elements_by_xpath("//button[contains(text(), 'Get Reward')]")
+                        if len(buttons) > 0:
+                            for button in buttons:
+                                try:
+                                    button.click()
+                                except:
+                                    pass
+                    elif '<span class="text-primary" id="timer">?</span>' in browser.page_source:
+                        try:
+                            browser.find_element_by_xpath(
+                                "//button[contains(text(), 'Show Timer / Click Here')]").click()
+                            is_shortlink_page = True
+                        except:
+                            pass
+                    elif '<span class="text-primary" id="timer">0</span>' in browser.page_source:
+                        try:
+                            browser.find_element_by_xpath("//button[contains(text(), 'Continue')]").click()
+                            step_count += 1
+                            if step_count == 3:
+                                Notification(app, 'Complete Shortlink task!')
+                                break
                         except:
                             pass
                     if time.time() - time_start > 360:
@@ -322,7 +463,7 @@ def DoOfferwalls_AsiaMag():
                             winsound.Beep(999, 500)
                             time.sleep(0.5)
                         Notification(app, 'Please solve captcha!')
-                        time.sleep(90)
+                        time.sleep(60)
                         break
                     if time.time() - time_start > 360:
                         break
@@ -342,6 +483,7 @@ try:
     threads = []
     threads.append(threading.Thread(target=ClaimFaucet, args=()))
     threads.append(threading.Thread(target=DoPtcAds, args=()))
+    threads.append(threading.Thread(target=DoShortlink, args=()))
     threads.append(threading.Thread(target=DoOfferwalls_AsiaMag, args=()))
     for thread in threads:
         thread.start()
