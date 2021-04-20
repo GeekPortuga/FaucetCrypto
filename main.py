@@ -113,7 +113,7 @@ def ClaimFaucet():
             finally:
                 browser.quit()
             sync = True
-            time.sleep(2400)
+            time.sleep(1800)
         else:
             time.sleep(1)
 
